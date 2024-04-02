@@ -1,1 +1,23 @@
-
+name: Sync Docs as Code - Confluence
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+jobs:
+  docs-as-code:
+    runs-on: ubuntu-latest
+    name: Sync Docs as Code - Confluence
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync Docs as Code - Confluence
+        uses: Bhacaz/docs-as-code-confluence@v2
+        with:
+          folder: docs
+          username: abc@xyz.com
+          password: ${{ secrets.API_TOKEN }}
+          confluence-base-url: https://mydomain.atlassian.net/wiki
+          space-key: ~1234
+          parent-page-id: 123456789
